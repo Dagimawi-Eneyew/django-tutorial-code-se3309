@@ -1,0 +1,142 @@
+1. Open command line 
+      
+    mkdir <dir name>
+  
+    pip install virtualenv
+	
+2. Create Virtual Environment and activate it
+        
+      py -m venv django-env       
+      django-env\Scripts\activate
+
+3. Open with visual studio code (If you are using VS code)
+    code . 
+
+4. Install Django
+   pip install django
+   
+5. Start a new django project
+   django-admin startproject soccer-proj
+   
+   cd soccer-proj
+   
+6. 
+   
+7. Change the default database configuration to avoid error when starting the server for first time
+
+settings.py disable sqllite
+	   DATABASES = {
+		 'default': {
+			'ENGINE': 'django.db.backends.dummy',
+		}
+	}
+8.Start server check if the project is configured correctly
+    
+	python manage.py runserver
+  http://127.0.0.1:8000/
+  
+9. Create an app - acts as a module
+    python manage.py startapp soccer_app
+	
+    Add the app name in the settings installed apps 
+	
+
+10. Create a simple view that returns Hello world
+
+    from django.http import HttpResponse
+	
+	
+	# Create your inside view
+def say_hello(request):
+    return HttpResponse('<h1>Hello World!</h1>')
+
+
+11. Create a urls.py file to define url paths of the app
+     # add the following
+	 from django.urls import path
+     from . import views
+	 
+	 # create url patterns to the app
+	 urlpatterns=[ path('hello/', views.say_hello, name='say_hello')]
+	 
+12. Go to main urls.py and add the new app
+    from django.urls import path,include
+	
+	path('app/', include('football_app.urls'))
+    
+	test the app 
+	http://127.0.0.1:8000/app/hello
+        
+13. Create the say hello with HTML render
+    
+    Add the view handler
+    
+		# dsay hello as html page
+	def say_hello_HTML(request):
+		return render(request, 'hello.html')
+	
+     
+14. Create the templates folder inside the app 
+     create the hello.html file inside it
+	 
+15. Create the route in the apps urls.py
+     path('hellohtml/', views.say_hello_HTML, name='say_hello_HTML'),
+	 
+16. How do we pass values to the templates and render
+    
+	# create the view handler first
+	# create the template file hello-html.py
+	# add path in the urls.py
+	hellonames
+	
+17. Connecting to my SQL Database
+    Install mysql client
+	  pip install mysqlclient
+	
+18. Create the database on workbench and populate the data 
+    
+	Add the database configuration to the settings file
+    DATABASES = {  
+    'default': {  
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'players',  
+        'USER': 'root',  
+        'PASSWORD': 'root',  
+        'HOST': '127.0.0.1',  
+        'PORT': '3306',     
+    }  
+}  
+ 
+ 
+19. Migrate command to make the connection
+     
+	python manage.py migrate
+	
+	Add the list playerview and listplayers.html
+	
+20. Add player view
+
+    Create the view handler
+	Create the template
+	Create the path in urls
+	Test
+	
+21. Delete Player
+    create the view handler
+	create template
+	create path
+	Test
+
+22. Update Player
+    create the view handler 
+	create the template
+	create path 
+	test
+	
+23. Add the navbar
+	
+	
+	
+	  
+    	
+
